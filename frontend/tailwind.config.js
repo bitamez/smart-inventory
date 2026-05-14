@@ -16,11 +16,11 @@ export default {
         warning: '#F59E0B',
         textMain: '#F3F4F6',
         textMuted: '#9CA3AF',
-        border: '#2A2D3A'
+        border: '#2A2D3A',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-      }
+      },
     },
   },
   plugins: [],
