@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Plus, Search, Filter, MoreVertical, Eye, Download } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -13,6 +14,7 @@ const mockSales = [
 ];
 
 const SalesPage = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredSales = mockSales.filter(sale => 
@@ -28,7 +30,7 @@ const SalesPage = () => {
           <h1 className="text-2xl font-bold text-textMain">Sales Transactions</h1>
           <p className="text-sm text-textMuted mt-1">Manage and track your sales invoices</p>
         </div>
-        <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2.5 rounded-lg flex items-center space-x-2 transition-colors text-sm font-medium">
+        <button onClick={() => navigate('/sales/new')} className="bg-primary hover:bg-primary/90 text-white px-4 py-2.5 rounded-lg flex items-center space-x-2 transition-colors text-sm font-medium">
           <Plus className="w-4 h-4" />
           <span>New Sale</span>
         </button>
@@ -93,7 +95,7 @@ const SalesPage = () => {
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end space-x-2">
-                      <button className="p-1.5 text-textMuted hover:text-primary hover:bg-primary/10 rounded transition-colors" title="View Details">
+                      <button onClick={() => navigate(`/sales/invoice/${sale.id}`)} className="p-1.5 text-textMuted hover:text-primary hover:bg-primary/10 rounded transition-colors" title="View Invoice">
                         <Eye className="w-4 h-4" />
                       </button>
                       <button className="p-1.5 text-textMuted hover:text-textMain hover:bg-surfaceHighlight rounded transition-colors" title="More Options">

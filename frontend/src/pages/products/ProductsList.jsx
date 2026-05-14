@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Plus, Search, Filter, MoreVertical, Edit, Trash2 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -13,6 +14,7 @@ const mockProducts = [
 ];
 
 const ProductsList = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredProducts = mockProducts.filter(p => 
@@ -28,7 +30,7 @@ const ProductsList = () => {
           <h1 className="text-2xl font-bold text-textMain">Products</h1>
           <p className="text-sm text-textMuted mt-1">Manage your inventory and product catalog</p>
         </div>
-        <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2.5 rounded-lg flex items-center space-x-2 transition-colors text-sm font-medium">
+        <button onClick={() => navigate('/products/add')} className="bg-primary hover:bg-primary/90 text-white px-4 py-2.5 rounded-lg flex items-center space-x-2 transition-colors text-sm font-medium">
           <Plus className="w-4 h-4" />
           <span>Add Product</span>
         </button>
