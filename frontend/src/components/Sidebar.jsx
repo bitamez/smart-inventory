@@ -9,11 +9,11 @@ import {
   Users, 
   Shield, 
   Settings, 
-  LogOut,
-  Box
+  LogOut
 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
+import companyLogo from '../assets/company-logo.jpg';
 
 const Sidebar = () => {
   const menuItems = [
@@ -31,7 +31,7 @@ const Sidebar = () => {
   return (
     <div className="w-64 h-screen bg-surface border-r border-border flex flex-col fixed left-0 top-0 text-textMuted">
       <div className="p-6 flex items-center space-x-3 text-textMain border-b border-border">
-        <Box className="w-8 h-8 text-primary" />
+        <img src={companyLogo} alt="Company Logo" className="w-8 h-8 rounded-full object-cover" />
         <div>
           <h1 className="font-bold text-sm tracking-wide leading-tight">Inventory & Sales</h1>
           <p className="text-[10px] text-textMuted">Management System</p>

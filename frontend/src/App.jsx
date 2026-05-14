@@ -7,6 +7,9 @@ import SalesPage from './pages/sales/SalesPage';
 import StockManagement from './pages/stock/StockManagement';
 import ApprovalPage from './pages/approvals/ApprovalPage';
 import ReportsPage from './pages/reports/ReportsPage';
+import UserManagement from './pages/users/UserManagement';
+import Roles from './pages/roles/Roles';
+import Settings from './pages/settings/Settings';
 
 function App() {
   return (
@@ -19,9 +22,9 @@ function App() {
           <Route path="stock" element={<StockManagement />} />
           <Route path="approvals" element={<ApprovalPage />} />
           <Route path="reports" element={<ReportsPage />} />
-          <Route path="users" element={<div className="text-white">Users Page Placeholder</div>} />
-          <Route path="roles" element={<div className="text-white">Roles Page Placeholder</div>} />
-          <Route path="settings" element={<div className="text-white">Settings Page Placeholder</div>} />
+          <Route path="users" element={<UserManagement />} />
+          <Route path="roles" element={<Roles />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
     </BrowserRouter>
