@@ -16,6 +16,9 @@ import Invoice from './pages/sales/Invoice';
 import StockManagement from './pages/stock/StockManagement';
 import ApprovalPage from './pages/approvals/ApprovalPage';
 import ReportsPage from './pages/reports/ReportsPage';
+import DailyReport from './pages/reports/DailyReport';
+import MonthlyReport from './pages/reports/MonthlyReport';
+import StockReport from './pages/reports/StockReport';
 import UserManagement from './pages/users/UserManagement';
 import Roles from './pages/roles/Roles';
 import Settings from './pages/settings/Settings';
@@ -53,6 +56,21 @@ function App() {
             <Route path="reports" element={
               <ProtectedRoute allowedRoles={['Admin', 'Manager']}>
                 <ReportsPage />
+              </ProtectedRoute>
+            } />
+            <Route path="reports/daily" element={
+              <ProtectedRoute allowedRoles={['Admin', 'Manager']}>
+                <DailyReport />
+              </ProtectedRoute>
+            } />
+            <Route path="reports/monthly" element={
+              <ProtectedRoute allowedRoles={['Admin', 'Manager']}>
+                <MonthlyReport />
+              </ProtectedRoute>
+            } />
+            <Route path="reports/stock" element={
+              <ProtectedRoute allowedRoles={['Admin', 'Manager']}>
+                <StockReport />
               </ProtectedRoute>
             } />
             <Route path="users" element={

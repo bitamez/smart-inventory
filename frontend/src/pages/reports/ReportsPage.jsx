@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BarChart3, TrendingUp, PackageSearch, Download, Calendar } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
@@ -17,8 +18,8 @@ const topProducts = [
   { name: 'Window Glass', value: 250000 },
 ];
 
-const ReportCard = ({ title, icon: Icon, description }) => (
-  <div className="bg-surface border border-border rounded-2xl p-6 hover:border-surfaceHighlight transition-colors cursor-pointer group flex flex-col h-full">
+const ReportCard = ({ title, icon: Icon, description, onClick }) => (
+  <div onClick={onClick} className="bg-surface border border-border rounded-2xl p-6 hover:border-primary/50 transition-colors cursor-pointer group flex flex-col h-full">
     <div className="flex justify-between items-start mb-4">
       <div className="w-12 h-12 rounded-xl bg-background border border-border flex items-center justify-center text-textMain group-hover:text-primary transition-colors">
         <Icon className="w-6 h-6" />
@@ -29,13 +30,14 @@ const ReportCard = ({ title, icon: Icon, description }) => (
     </div>
     <h3 className="text-lg font-semibold text-textMain mb-2">{title}</h3>
     <p className="text-sm text-textMuted mb-6 flex-1">{description}</p>
-    <button className="text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center">
-      Generate Report &rarr;
-    </button>
+    <span className="text-sm font-medium text-primary group-hover:text-primary/80 transition-colors flex items-center">
+      View Report &rarr;
+    </span>
   </div>
 );
 
 const ReportsPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -54,17 +56,20 @@ const ReportsPage = () => {
         <ReportCard 
           title="Daily Sales Report" 
           description="Detailed breakdown of all completed sales transactions grouped by day."
-          icon={Calendar} 
+          icon={Calendar}
+          onClick={() => navigate('/reports/daily')}
         />
         <ReportCard 
           title="Monthly Revenue Summary" 
           description="Aggregated total sales, discounts, and VAT collected on a monthly basis."
-          icon={TrendingUp} 
+          icon={TrendingUp}
+          onClick={() => navigate('/reports/monthly')}
         />
         <ReportCard 
           title="Current Stock Status" 
           description="Real-time snapshot of current inventory levels, highlighting low-stock items."
-          icon={PackageSearch} 
+          icon={PackageSearch}
+          onClick={() => navigate('/reports/stock')}
         />
       </div>
 
