@@ -1,21 +1,22 @@
 import React from 'react';
 import { 
-  LayoutDashboard, 
-  Package, 
-  ShoppingCart, 
-  ArrowRightLeft, 
-  CheckSquare, 
-  FileText, 
-  Users, 
-  Shield, 
-  Settings, 
-  LogOut
+  LayoutDashboard, Package, ShoppingCart, ArrowRightLeft,
+  CheckSquare, FileText, Users, Shield, Settings, LogOut
 } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import companyLogo from '../assets/company-logo.jpg';
+import { useAuth } from '../context/AuthContext';
 
 const Sidebar = () => {
+  const { profile, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
+
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
     { icon: Package, label: 'Products', path: '/products' },
@@ -63,8 +64,19 @@ const Sidebar = () => {
         ))}
       </div>
 
-      <div className="p-4 border-t border-border">
-        <button className="flex items-center space-x-3 px-3 py-2.5 w-full text-sm font-medium rounded-lg hover:bg-surfaceHighlight hover:text-danger transition-colors duration-200">
+      <div className="p-4 border-t border-border space-y-3">
+        {profile && (
+          <div className="flex items-center space-x-3 px-3 py-2">
+            <div className="w-8 h-8 rounded-full bg-surfaceHighlight border border-border flex items-center justify-center text-textMain font-bold text-sm shrink-0">
+              {profile.full_name?.charAt(0) || 'U'}
+            </div>
+            <div className="overflow-hidden">
+              <p className="text-sm font-medium text-textMain truncate">{profile.full_name}</p>
+              <p className="text-xs text-textMuted truncate">{profile.role_name}</p>
+            </div>
+          </div>
+        )}
+        <button onClick={handleLogout} className="flex items-center space-x-3 px-3 py-2.5 w-full text-sm font-medium rounded-lg hover:bg-surfaceHighlight hover:text-danger transition-colors duration-200">
           <LogOut className="w-5 h-5 opacity-70" />
           <span>Logout</span>
         </button>

@@ -1,6 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
+
+// Pages
+import Login from './pages/auth/Login';
 import Dashboard from './pages/dashboard/Dashboard';
 import ProductsList from './pages/products/ProductsList';
 import SalesPage from './pages/sales/SalesPage';
@@ -14,19 +19,55 @@ import Settings from './pages/settings/Settings';
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="products" element={<ProductsList />} />
-          <Route path="sales" element={<SalesPage />} />
-          <Route path="stock" element={<StockManagement />} />
-          <Route path="approvals" element={<ApprovalPage />} />
-          <Route path="reports" element={<ReportsPage />} />
-          <Route path="users" element={<UserManagement />} />
-          <Route path="roles" element={<Roles />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/login" element={<Login />} />
+
+          {/* Protected Routes */}
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="products" element={<ProductsList />} />
+            <Route path="sales" element={<SalesPage />} />
+            <Route path="stock" element={<StockManagement />} />
+            <Route path="approvals" element={
+              <ProtectedRoute allowedRoles={['Admin', 'Manager']}>
+                <ApprovalPage />
+              </ProtectedRoute>
+            } />
+            <Route path="reports" element={
+              <ProtectedRoute allowedRoles={['Admin', 'Manager']}>
+                <ReportsPage />
+              </ProtectedRoute>
+            } />
+            <Route path="users" element={
+              <ProtectedRoute allowedRoles={['Admin']}>
+                <UserManagement />
+              </ProtectedRoute>
+            } />
+            <Route path="roles" element={
+              <ProtectedRoute allowedRoles={['Admin']}>
+                <Roles />
+              </ProtectedRoute>
+            } />
+            <Route path="settings" element={
+              <ProtectedRoute allowedRoles={['Admin']}>
+                <Settings />
+              </ProtectedRoute>
+            } />
+          </Route>
+
+          {/* Catch-all */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
