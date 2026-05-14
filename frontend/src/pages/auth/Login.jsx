@@ -129,8 +129,11 @@ const Login = () => {
           </form>
         </div>
 
-        {/* Footer */}
-        <p className="text-center text-xs text-textMuted mt-6">
+        <p className="text-center text-sm text-textMuted mt-6">
+          Don't have an account?{' '}
+          <Link to="/register" className="text-primary hover:text-primary/80 font-medium transition-colors">Create one</Link>
+        </p>
+        <p className="text-center text-xs text-textMuted mt-2">
           &copy; 2025 Inventory & Sales Management System. All rights reserved.
         </p>
       </div>

@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 
 // Pages
 import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
 import Dashboard from './pages/dashboard/Dashboard';
 import ProductsList from './pages/products/ProductsList';
 import SalesPage from './pages/sales/SalesPage';
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
           {/* Protected Routes */}
           <Route
