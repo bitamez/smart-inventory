@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import Dashboard from './pages/dashboard/Dashboard';
 import ProductsList from './pages/products/ProductsList';
 import SalesPage from './pages/sales/SalesPage';
+import StockManagement from './pages/stock/StockManagement';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="products" element={<ProductsList />} />
           <Route path="sales" element={<SalesPage />} />
-          <Route path="stock" element={<div className="text-white">Stock Page Placeholder</div>} />
+          <Route path="stock" element={<StockManagement />} />
           <Route path="approvals" element={<div className="text-white">Approvals Page Placeholder</div>} />
           <Route path="reports" element={<div className="text-white">Reports Page Placeholder</div>} />
           <Route path="users" element={<div className="text-white">Users Page Placeholder</div>} />
