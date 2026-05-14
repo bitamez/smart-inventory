@@ -9,7 +9,10 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Dashboard from './pages/dashboard/Dashboard';
 import ProductsList from './pages/products/ProductsList';
+import AddProduct from './pages/products/AddProduct';
 import SalesPage from './pages/sales/SalesPage';
+import NewSale from './pages/sales/NewSale';
+import Invoice from './pages/sales/Invoice';
 import StockManagement from './pages/stock/StockManagement';
 import ApprovalPage from './pages/approvals/ApprovalPage';
 import ReportsPage from './pages/reports/ReportsPage';
@@ -37,7 +40,10 @@ function App() {
           >
             <Route index element={<Dashboard />} />
             <Route path="products" element={<ProductsList />} />
+            <Route path="products/add" element={<AddProduct />} />
             <Route path="sales" element={<SalesPage />} />
+            <Route path="sales/new" element={<NewSale />} />
+            <Route path="sales/invoice/:id" element={<Invoice />} />
             <Route path="stock" element={<StockManagement />} />
             <Route path="approvals" element={
               <ProtectedRoute allowedRoles={['Admin', 'Manager']}>
