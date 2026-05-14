@@ -5,6 +5,8 @@ import Dashboard from './pages/dashboard/Dashboard';
 import ProductsList from './pages/products/ProductsList';
 import SalesPage from './pages/sales/SalesPage';
 import StockManagement from './pages/stock/StockManagement';
+import ApprovalPage from './pages/approvals/ApprovalPage';
+import ReportsPage from './pages/reports/ReportsPage';
 
 function App() {
   return (
@@ -15,8 +17,8 @@ function App() {
           <Route path="products" element={<ProductsList />} />
           <Route path="sales" element={<SalesPage />} />
           <Route path="stock" element={<StockManagement />} />
-          <Route path="approvals" element={<div className="text-white">Approvals Page Placeholder</div>} />
-          <Route path="reports" element={<div className="text-white">Reports Page Placeholder</div>} />
+          <Route path="approvals" element={<ApprovalPage />} />
+          <Route path="reports" element={<ReportsPage />} />
           <Route path="users" element={<div className="text-white">Users Page Placeholder</div>} />
           <Route path="roles" element={<div className="text-white">Roles Page Placeholder</div>} />
           <Route path="settings" element={<div className="text-white">Settings Page Placeholder</div>} />
